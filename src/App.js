@@ -1,5 +1,4 @@
 import "./App.css";
-import Button from "@mui/material/Button";
 import { Buttons } from "./components/Buttons"
 import { ChangeLocationSection } from "./components/ChangeLocationSection";
 import { Typography } from "@mui/material";
@@ -20,6 +19,10 @@ function App() {
     const newApiUsers = [newUser, ...apiUsers];
     setApiUsers(newApiUsers);
   }
+  function deleteUser(id) {
+      const users = apiUsers.filter(user => user.id !== id)
+      setApiUsers(users);
+  }
 
   return (
       <div className="App">
@@ -30,7 +33,7 @@ function App() {
 
         <AddUserForm onFormSubmit={addNewUser} />
 
-        <UserList users={apiUsers} />
+        <UserList users={apiUsers} handleDeleteUser={deleteUser}/>   //ii pasez lui userlist un prop
       </div>
   );
 }
